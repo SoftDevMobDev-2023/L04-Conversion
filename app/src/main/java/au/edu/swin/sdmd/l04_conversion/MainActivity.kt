@@ -20,4 +20,11 @@ class MainActivity : AppCompatActivity() {
             tvFahrenheit.text = fahrenheit.toString()
         }
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        val tvFahrenheit = findViewById<TextView>(R.id.fahrenheit)
+
+        outState.putString("fahrenheit", tvFahrenheit.text.toString())
+        super.onSaveInstanceState(outState)
+    }
 }
