@@ -28,65 +28,11 @@ class MainActivityTest {
 
     @Test
     fun mainActivityTest() {
-        val appCompatEditText = onView(
-            allOf(
-                withId(R.id.celsuis), withText("0"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText.perform(replaceText("10"))
-
-        val appCompatEditText2 = onView(
-            allOf(
-                withId(R.id.celsuis), withText("10"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText2.perform(closeSoftKeyboard())
-
-        val appCompatEditText3 = onView(
-            allOf(
-                withId(R.id.celsuis), withText("10"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText3.perform(pressImeActionButton())
-
-        val materialButton = onView(
-            allOf(
-                withId(R.id.converter), withText("Convert"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        materialButton.perform(click())
+        val appCompatEditText = onView(withId(R.id.celsuis)).perform(replaceText("10"))
+        appCompatEditText.perform(closeSoftKeyboard())
+        onView(withId(R.id.converter)).perform(click())
+        val textView = onView(withId(R.id.fahrenheit))
+        textView.check(matches(withText("50.0")))
     }
 
     private fun childAtPosition(
