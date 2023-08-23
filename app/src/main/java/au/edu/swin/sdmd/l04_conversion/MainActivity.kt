@@ -11,6 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        savedInstanceState?.let {
+            val tvFahrenheit = findViewById<TextView>(R.id.fahrenheit)
+            tvFahrenheit.text = it.getString("fahrenheit").toString()
+        }
+
         val button = findViewById<Button>(R.id.converter)
         button.setOnClickListener {
             val etCelsius = findViewById<EditText>(R.id.celsuis)
